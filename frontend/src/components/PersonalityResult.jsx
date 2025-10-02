@@ -1,8 +1,32 @@
 import React from 'react';
 import { Download, Share2, ArrowRight, Star, Target, TrendingUp, Users, Briefcase, Heart, MessageCircle, Award } from 'lucide-react';
 import PERSONALITY_TYPES from '../data/personality/personalityTypes';
+import { generateAssessmentPDF } from '../utils/pdfGenerator';
 
 const PersonalityResult = ({ assessmentData, userData, onDownload, onShare }) => {
+  const handleDownloadPDF = async () => {
+    try {
+      const typeInfo = PERSONALITY_TYPES[assessmentData.finalType];
+      await generateAssessmentPDF(assessmentData, userData, typeInfo);
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Failed to generate PDF. Please try again.');
+    }
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'My Hugo Personality Assessment',
+        text: `I just completed my Hugo Personality Assessment! I'm a ${PERSONALITY_TYPES[assessmentData.finalType].name.en} (${assessmentData.finalType})`,
+        url: window.location.href
+      }).catch(err => console.log('Error sharing:', err));
+    } else {
+      // Fallback: Copy to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
   const { finalType } = assessmentData;
   const typeInfo = PERSONALITY_TYPES[finalType];
 
@@ -32,14 +56,14 @@ const PersonalityResult = ({ assessmentData, userData, onDownload, onShare }) =>
           </div>
           <div className="ml-6 flex space-x-2">
             <button
-              onClick={onDownload}
+              onClick={handleDownloadPDF}
               className="bg-white/20 hover:bg-white/30 backdrop-blur-sm p-3 rounded-lg transition-all"
-              title="Download Report"
+              title="Download PDF Report"
             >
               <Download className="w-5 h-5" />
             </button>
             <button
-              onClick={onShare}
+              onClick={handleShare}
               className="bg-white/20 hover:bg-white/30 backdrop-blur-sm p-3 rounded-lg transition-all"
               title="Share Results"
             >

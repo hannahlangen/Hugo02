@@ -61,7 +61,9 @@
     "zod": "^3.24.4",
     "i18next": "^25.5.3",
     "react-i18next": "^15.2.0",
-    "i18next-browser-languagedetector": "^8.0.2"
+    "i18next-browser-languagedetector": "^8.0.2",
+    "jspdf": "^2.5.2",
+    "html2canvas": "^1.4.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
