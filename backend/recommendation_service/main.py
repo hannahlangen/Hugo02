@@ -6,7 +6,7 @@ FastAPI service for AI-powered team recommendations
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Any
 from enum import Enum
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -94,7 +94,7 @@ class MemberRecommendation(BaseModel):
 
 class TeamComposition(BaseModel):
     """A complete team composition"""
-    members: List[Dict[str, any]]
+    members: List[Dict[str, Any]]
     synergy_score: float
     project_fit_score: float
     reasoning: str
@@ -238,7 +238,7 @@ async def health_check():
     return {"status": "healthy", "service": "recommendation"}
 
 
-@app.post("/api/recommendations/find-member", response_model=Dict[str, any])
+@app.post("/api/recommendations/find-member", response_model=Dict[str, Any])
 async def recommend_team_member(request: RecommendMemberRequest):
     """
     Recommend best candidates to add to an existing team
@@ -318,7 +318,7 @@ async def recommend_team_member(request: RecommendMemberRequest):
         raise HTTPException(status_code=500, detail=f"Internal error: {str(e)}")
 
 
-@app.post("/api/recommendations/build-team", response_model=Dict[str, any])
+@app.post("/api/recommendations/build-team", response_model=Dict[str, Any])
 async def recommend_team_composition(request: BuildTeamRequest):
     """
     Recommend optimal team compositions for a project
@@ -343,7 +343,7 @@ async def recommend_team_composition(request: BuildTeamRequest):
         raise HTTPException(status_code=500, detail=f"Internal error: {str(e)}")
 
 
-@app.get("/api/recommendations/team-gaps/{team_id}", response_model=Dict[str, any])
+@app.get("/api/recommendations/team-gaps/{team_id}", response_model=Dict[str, Any])
 async def identify_team_gaps(team_id: int):
     """
     Identify gaps and improvement opportunities in a team
