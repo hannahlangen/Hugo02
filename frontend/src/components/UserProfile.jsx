@@ -13,39 +13,43 @@ const UserProfile = ({ onBack }) => {
   };
 
   // Mock Hugo personality data - in real app this would come from API
+  // Using V1 (Der Wegweiser / The Pathfinder) as example
   const mockHugoProfile = {
-    hugoType: "Analytical Thinker",
-    hugoCode: "AT",
-    description: "You approach problems systematically and value data-driven decisions. You prefer structured environments and clear processes.",
+    hugoType: "Der Wegweiser",
+    hugoTypeEn: "The Pathfinder",
+    hugoCode: "V1",
+    dimension: "Vision",
+    description: "Zeigt den Weg zu einer besseren Zukunft. Natürlicher Stratege, der komplexe Situationen durchdringt und klare Richtungen vorgibt.",
+    descriptionEn: "Shows the way to a better future. Natural strategist who penetrates complex situations and provides clear direction.",
     strengths: [
-      "Logical problem-solving",
-      "Attention to detail", 
-      "Strategic thinking",
-      "Quality focus"
+      "Strategisches Denken",
+      "Entscheidungskraft", 
+      "Führungsqualität",
+      "Visionäre Ausrichtung"
     ],
     communicationStyle: {
-      preferred: "Direct and fact-based communication",
+      preferred: "Direkt, inspirierend, zukunftsorientiert",
       tips: [
-        "Provide data and evidence to support your points",
-        "Be concise and structured in presentations",
-        "Allow time for thorough analysis before decisions"
+        "Kommunizieren Sie die Vision klar und überzeugend",
+        "Fokussieren Sie auf das große Ganze",
+        "Geben Sie klare Richtungen vor"
       ]
     },
     workingStyle: {
-      environment: "Quiet, organized workspace",
-      collaboration: "Small, focused teams",
-      decisionMaking: "Methodical and research-based"
+      environment: "Dynamisches, strategisches Umfeld",
+      collaboration: "Führungsrolle in visionären Teams",
+      decisionMaking: "Schnell und entschlossen"
     },
     careerSuggestions: [
-      "Data Analysis & Research",
-      "Quality Assurance",
-      "Strategic Planning",
-      "Technical Consulting"
+      "CEO",
+      "Strategie-Direktor",
+      "Innovations-Lead",
+      "Unternehmer"
     ],
     teamCompatibility: {
-      bestWith: ["Creative Innovator", "Practical Organizer"],
-      challengesWith: ["Spontaneous Networker"],
-      tips: "Works well with detail-oriented and goal-focused team members"
+      bestWith: ["Der Organisator (V3)", "Der Umsetzer (C3)"],
+      challengesWith: ["Detailorientierte Typen ohne Vision"],
+      tips: "Arbeitet am besten mit umsetzungsstarken Teammitgliedern, die die Vision in die Realität umsetzen"
     }
   };
 
