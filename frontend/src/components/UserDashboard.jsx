@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/RoleBasedAuthContext';
 import ResponsiveNavigation from './ResponsiveNavigation';
 import TeamsPage from './TeamsPage';
-import HugoPersonalityAssessment from './HugoPersonalityAssessment';
+import HugoChatAssessment from './HugoChatAssessment';
 import UserProfile from './UserProfile';
 
 const UserDashboard = () => {
@@ -49,7 +49,7 @@ const UserDashboard = () => {
       case 'team':
         return <TeamsPage />;
       case 'assessment':
-        return <HugoPersonalityAssessment onComplete={(profile) => console.log('Assessment completed:', profile)} />;
+        return <HugoChatAssessment />;
       case 'dashboard':
       default:
         return (
