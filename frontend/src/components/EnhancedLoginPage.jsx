@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../contexts/RoleBasedAuthContext'
 import { Brain, Mail, Lock, AlertCircle, Eye, EyeOff } from 'lucide-react'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const EnhancedLoginPage = () => {
+  const { t } = useTranslation()
   const { login } = useAuth()
   const [formData, setFormData] = useState({
     email: '',
@@ -20,7 +23,7 @@ const EnhancedLoginPage = () => {
     try {
       await login(formData.email, formData.password)
     } catch (err) {
-      setError(err.message || 'Login failed')
+      setError(err.message || t('login.errors.loginFailed'))
     } finally {
       setLoading(false)
     }
@@ -31,29 +34,27 @@ const EnhancedLoginPage = () => {
       ...formData,
       [e.target.name]: e.target.value
     })
-    // Clear error when user starts typing
     if (error) setError('')
   }
 
-  // Demo accounts for testing
   const demoAccounts = [
     {
-      role: 'Hugo Manager',
+      role: t('login.roles.hugoManager'),
       email: 'hugo@hugoatwork.com',
       password: 'hugo123',
-      description: 'Platform Administrator - Manage all companies and users'
+      description: t('login.roleDescriptions.hugoManager')
     },
     {
-      role: 'HR Manager',
+      role: t('login.roles.hrManager'),
       email: 'hr@democompany.com',
       password: 'hr123',
-      description: 'Company Administrator - Manage teams and employees'
+      description: t('login.roleDescriptions.hrManager')
     },
     {
-      role: 'Employee',
+      role: t('login.roles.employee'),
       email: 'user@democompany.com',
       password: 'user123',
-      description: 'Team Member - View profile and team information'
+      description: t('login.roleDescriptions.employee')
     }
   ]
 
@@ -64,37 +65,41 @@ const EnhancedLoginPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
+      {/* Language Switcher - Top Right */}
+      <div className="absolute top-4 right-4">
+        <LanguageSwitcher />
+      </div>
+
       <div className="max-w-6xl w-full grid lg:grid-cols-2 gap-8 items-center">
         
         {/* Left side - Branding and Info */}
         <div className="text-center lg:text-left">
           <div className="flex items-center justify-center lg:justify-start mb-8">
             <Brain className="h-12 w-12 text-blue-600 mr-3" />
-            <h1 className="text-4xl font-bold text-gray-900">Hugo</h1>
+            <h1 className="text-4xl font-bold text-gray-900">{t('login.title')}</h1>
           </div>
           
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-            Personality-Driven
-            <span className="text-blue-600 block">Team Building</span>
+            {t('login.subtitle')}
+            <span className="text-blue-600 block">{t('login.subtitle2')}</span>
           </h2>
           
           <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-            Discover your team's personality types, optimize collaboration, 
-            and build high-performing teams with Hugo's AI-powered insights.
+            {t('login.description')}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
             <div className="bg-white p-4 rounded-lg shadow-sm border">
               <div className="text-2xl font-bold text-blue-600 mb-1">12</div>
-              <div className="text-sm text-gray-600">Personality Types</div>
+              <div className="text-sm text-gray-600">{t('login.personalityTypes')}</div>
             </div>
             <div className="bg-white p-4 rounded-lg shadow-sm border">
               <div className="text-2xl font-bold text-green-600 mb-1">AI</div>
-              <div className="text-sm text-gray-600">Powered Analysis</div>
+              <div className="text-sm text-gray-600">{t('login.aiPowered')}</div>
             </div>
             <div className="bg-white p-4 rounded-lg shadow-sm border">
               <div className="text-2xl font-bold text-purple-600 mb-1">24/7</div>
-              <div className="text-sm text-gray-600">Team Insights</div>
+              <div className="text-sm text-gray-600">{t('login.teamInsights')}</div>
             </div>
           </div>
         </div>
@@ -102,7 +107,7 @@ const EnhancedLoginPage = () => {
         {/* Right side - Login Form */}
         <div className="bg-white rounded-2xl shadow-xl p-8 border">
           <div className="mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Welcome Back</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">{t('dashboard.welcome')}</h3>
             <p className="text-gray-600">Sign in to access your Hugo dashboard</p>
           </div>
 
@@ -116,7 +121,7 @@ const EnhancedLoginPage = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
+                {t('login.email')}
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -128,14 +133,14 @@ const EnhancedLoginPage = () => {
                   onChange={handleChange}
                   required
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  placeholder="Enter your email"
+                  placeholder={t('login.email')}
                 />
               </div>
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
+                {t('login.password')}
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -147,12 +152,13 @@ const EnhancedLoginPage = () => {
                   onChange={handleChange}
                   required
                   className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  placeholder="Enter your password"
+                  placeholder={t('login.password')}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  title={showPassword ? t('login.hidePassword') : t('login.showPassword')}
                 >
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
@@ -167,17 +173,17 @@ const EnhancedLoginPage = () => {
               {loading ? (
                 <div className="flex items-center justify-center">
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                  Signing In...
+                  {t('login.loggingIn')}
                 </div>
               ) : (
-                'Sign In'
+                t('login.loginButton')
               )}
             </button>
           </form>
 
           {/* Demo Accounts */}
           <div className="mt-8 pt-6 border-t border-gray-200">
-            <h4 className="text-sm font-medium text-gray-700 mb-4">Demo Accounts</h4>
+            <h4 className="text-sm font-medium text-gray-700 mb-4">{t('login.demoAccounts')}</h4>
             <div className="space-y-3">
               {demoAccounts.map((account, index) => (
                 <div key={index} className="bg-gray-50 p-3 rounded-lg">
@@ -188,7 +194,7 @@ const EnhancedLoginPage = () => {
                       onClick={() => fillDemoAccount(account.email, account.password)}
                       className="text-xs text-blue-600 hover:text-blue-700 font-medium"
                     >
-                      Use Account
+                      {t('login.tryDemo')}
                     </button>
                   </div>
                   <p className="text-xs text-gray-600 mb-2">{account.description}</p>
