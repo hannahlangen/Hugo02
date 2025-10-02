@@ -4,6 +4,7 @@ import { Send, User, Bot } from 'lucide-react';
 import { getCulturalProfile, interpretCulturalDimensions } from '../data/cultural/culturalDimensions';
 import PERSONALITY_TYPES from '../data/personality/personalityTypes';
 import { dimensionQuestions, analyzeDimensionResponse, analyzeTypeResponse } from '../data/assessment/openEndedQuestions';
+import PersonalityResult from './PersonalityResult';
 
 const HugoChatAssessment = () => {
   const { t, i18n } = useTranslation();
@@ -340,6 +341,24 @@ const HugoChatAssessment = () => {
       handleSendMessage();
     }
   };
+
+  // Show result page when assessment is complete
+  if (conversationState === 'complete' && assessmentData.finalType) {
+    return (
+      <PersonalityResult
+        assessmentData={assessmentData}
+        userData={userData}
+        onDownload={() => {
+          // TODO: Implement PDF download
+          console.log('Download PDF');
+        }}
+        onShare={() => {
+          // TODO: Implement sharing
+          console.log('Share results');
+        }}
+      />
+    );
+  }
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
