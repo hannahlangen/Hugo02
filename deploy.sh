@@ -39,7 +39,8 @@ check_docker() {
         exit 1
     fi
     
-    if ! command -v docker-compose &> /dev/null; then
+    # Check for docker compose (v2 plugin) or docker compose (v1)
+    if ! docker compose version &> /dev/null && ! command -v docker compose &> /dev/null; then
         print_error "Docker Compose is not installed. Please install Docker Compose first."
         exit 1
     fi
@@ -65,10 +66,10 @@ deploy_services() {
     print_status "Building and starting Hugo App services..."
     
     # Stop any existing containers
-    docker-compose down
+    docker compose down
     
     # Build and start services
-    docker-compose up -d --build
+    docker compose up -d --build
     
     print_success "Services started successfully"
 }
@@ -157,10 +158,10 @@ show_deployment_info() {
     echo "   Team Service:       http://localhost:8004/health"
     echo ""
     echo "🐳 Docker Commands:"
-    echo "   View logs:          docker-compose logs -f"
-    echo "   Stop services:      docker-compose down"
-    echo "   Restart services:   docker-compose restart"
-    echo "   View containers:    docker-compose ps"
+    echo "   View logs:          docker compose logs -f"
+    echo "   Stop services:      docker compose down"
+    echo "   Restart services:   docker compose restart"
+    echo "   View containers:    docker compose ps"
     echo ""
     echo "🧪 Testing:"
     echo "   Run API tests:      python3 test_apis.py"
@@ -189,17 +190,17 @@ main() {
 case "${1:-}" in
     "stop")
         print_status "Stopping Hugo App services..."
-        docker-compose down
+        docker compose down
         print_success "Services stopped"
         ;;
     "restart")
         print_status "Restarting Hugo App services..."
-        docker-compose restart
+        docker compose restart
         print_success "Services restarted"
         ;;
     "logs")
         print_status "Showing service logs..."
-        docker-compose logs -f
+        docker compose logs -f
         ;;
     "test")
         print_status "Running API tests..."
@@ -207,7 +208,7 @@ case "${1:-}" in
         ;;
     "clean")
         print_status "Cleaning up Docker resources..."
-        docker-compose down -v
+        docker compose down -v
         docker system prune -f
         print_success "Cleanup completed"
         ;;

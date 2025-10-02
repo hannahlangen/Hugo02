@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main_two_stage.py main.py
+COPY main.py .
 
 EXPOSE 8005
 
