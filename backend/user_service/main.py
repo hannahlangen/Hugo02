@@ -6,6 +6,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 import os
 from datetime import datetime, timedelta
+import bcrypt
 
 app = FastAPI(title="Hugo User Service", version="2.0.0")
 
@@ -39,8 +40,18 @@ class TokenResponse(BaseModel):
     token_type: str
     user: dict
 
-def verify_password(password: str, stored_password: str) -> bool:
-    return password == stored_password
+def hash_password(password: str) -> str:
+    """Hash a password using bcrypt"""
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed.decode('utf-8')
+
+def verify_password(password: str, hashed_password: str) -> bool:
+    """Verify a password against a bcrypt hash"""
+    try:
+        return bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8'))
+    except Exception:
+        return False
 
 def create_access_token(data: dict):
     to_encode = data.copy()
