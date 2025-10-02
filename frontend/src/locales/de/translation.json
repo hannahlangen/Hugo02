@@ -22,7 +22,9 @@
     "error": "Fehler",
     "success": "Erfolg",
     "warning": "Warnung",
-    "info": "Information"
+    "info": "Information",
+    "clickToOpen": "Klicken zum Öffnen →",
+    "comingSoon": "Demnächst verfügbar"
   },
   "login": {
     "title": "Hugo",
@@ -62,7 +64,12 @@
     "profile": "Profil",
     "invitations": "Einladungen",
     "logout": "Abmelden",
-    "menu": "Menü"
+    "menu": "Menü",
+    "myProfile": "Mein Profil",
+    "myTeam": "Mein Team",
+    "assessment": "Assessment",
+    "reports": "Berichte",
+    "employees": "Mitarbeiter"
   },
   "dashboard": {
     "welcome": "Willkommen zurück",
@@ -112,19 +119,37 @@
     }
   },
   "userDashboard": {
-    "title": "Mein Dashboard",
+    "title": "Mitarbeiter-Dashboard",
+    "subtitle": "Teammitglieder-Portal",
+    "welcomeMessage": "Willkommen! Sie sind als Teammitglied angemeldet.",
     "myProfile": "Mein Profil",
+    "myProfileDescription": "Sehen Sie Ihr Hugo-Persönlichkeitsprofil und Erkenntnisse",
     "myTeam": "Mein Team",
-    "myAssessments": "Meine Assessments",
+    "myTeamDescription": "Sehen Sie Ihre Teammitglieder und Team-Dynamiken",
+    "assessment": "Assessment",
+    "assessmentDescription": "Nehmen Sie am Hugo-Persönlichkeits-Assessment teil",
     "personalityType": "Persönlichkeitstyp",
     "teamRole": "Team-Rolle",
     "assessmentProgress": "Assessment-Fortschritt",
     "teamMembers": "Teammitglieder",
     "upcomingTasks": "Anstehende Aufgaben",
-    "recentActivity": "Letzte Aktivitäten"
+    "recentActivity": "Letzte Aktivitäten",
+    "quickActions": {
+      "title": "Schnellaktionen",
+      "viewProfile": "Profil anzeigen",
+      "takeAssessment": "Assessment durchführen",
+      "viewTeam": "Team anzeigen",
+      "updateProfile": "Profil aktualisieren"
+    },
+    "stats": {
+      "assessmentCompleted": "Assessment abgeschlossen",
+      "teamMembers": "Teammitglieder",
+      "teamProjects": "Team-Projekte",
+      "collaborationScore": "Zusammenarbeits-Score"
+    }
   },
   "teams": {
-    "title": "Teams",
+    "title": "Teams verwalten und Team-Dynamiken analysieren",
     "allTeams": "Alle Teams",
     "myTeams": "Meine Teams",
     "createTeam": "Team erstellen",
@@ -136,18 +161,32 @@
     "teamLead": "Teamleiter",
     "members": "Mitglieder",
     "noTeams": "Keine Teams vorhanden",
-    "createFirstTeam": "Erstellen Sie Ihr erstes Team"
+    "createFirstTeam": "Erstellen Sie Ihr erstes Team",
+    "viewDetails": "Details anzeigen",
+    "editTeam": "Team bearbeiten",
+    "deleteTeam": "Team löschen",
+    "teamSize": "Teamgröße",
+    "createdDate": "Erstellt am",
+    "lastUpdated": "Zuletzt aktualisiert"
   },
   "analytics": {
     "title": "Analysen",
-    "overview": "Übersicht",
+    "overview": "Unternehmenseinblicke und Team-Performance-Metriken",
     "teamAnalytics": "Team-Analysen",
     "personalityAnalytics": "Persönlichkeits-Analysen",
     "engagementMetrics": "Engagement-Metriken",
     "performanceMetrics": "Leistungsmetriken",
     "exportData": "Daten exportieren",
     "dateRange": "Zeitraum",
-    "filterBy": "Filtern nach"
+    "filterBy": "Filtern nach",
+    "totalEmployees": "Mitarbeiter gesamt",
+    "activeTeams": "Aktive Teams",
+    "completedAssessments": "Abgeschlossene Assessments",
+    "averageEngagement": "Durchschnittliches Engagement",
+    "personalityDistribution": "Persönlichkeitsverteilung",
+    "teamPerformance": "Team-Performance",
+    "engagementTrends": "Engagement-Trends",
+    "assessmentCompletion": "Assessment-Abschlussrate"
   },
   "profile": {
     "title": "Profil",
@@ -166,7 +205,13 @@
     "editProfile": "Profil bearbeiten",
     "changePassword": "Passwort ändern",
     "profileUpdated": "Profil aktualisiert",
-    "updateFailed": "Aktualisierung fehlgeschlagen"
+    "updateFailed": "Aktualisierung fehlgeschlagen",
+    "viewProfile": "Profil anzeigen",
+    "myPersonality": "Meine Persönlichkeit",
+    "assessmentResults": "Assessment-Ergebnisse",
+    "teamCompatibility": "Team-Kompatibilität",
+    "workStyle": "Arbeitsstil",
+    "communicationPreferences": "Kommunikationspräferenzen"
   },
   "assessment": {
     "title": "Assessment",
@@ -182,7 +227,11 @@
     "thankYou": "Vielen Dank!",
     "assessmentComplete": "Assessment abgeschlossen",
     "viewResults": "Ergebnisse anzeigen",
-    "retakeAssessment": "Assessment wiederholen"
+    "retakeAssessment": "Assessment wiederholen",
+    "takeHugoAssessment": "Hugo-Persönlichkeits-Assessment durchführen",
+    "notCompleted": "Noch nicht abgeschlossen",
+    "completed": "Abgeschlossen",
+    "inProgress": "In Bearbeitung"
   },
   "invitations": {
     "title": "Einladungen",

@@ -22,7 +22,9 @@
     "error": "Error",
     "success": "Success",
     "warning": "Warning",
-    "info": "Information"
+    "info": "Information",
+    "clickToOpen": "Click to Open →",
+    "comingSoon": "Coming Soon"
   },
   "login": {
     "title": "Hugo",
@@ -62,7 +64,12 @@
     "profile": "Profile",
     "invitations": "Invitations",
     "logout": "Logout",
-    "menu": "Menu"
+    "menu": "Menu",
+    "myProfile": "My Profile",
+    "myTeam": "My Team",
+    "assessment": "Assessment",
+    "reports": "Reports",
+    "employees": "Employees"
   },
   "dashboard": {
     "welcome": "Welcome back",
@@ -112,19 +119,37 @@
     }
   },
   "userDashboard": {
-    "title": "My Dashboard",
+    "title": "Employee Dashboard",
+    "subtitle": "Team Member Portal",
+    "welcomeMessage": "Welcome! You are logged in as Team Member.",
     "myProfile": "My Profile",
+    "myProfileDescription": "View your Hugo personality profile and insights",
     "myTeam": "My Team",
-    "myAssessments": "My Assessments",
+    "myTeamDescription": "View your team members and team dynamics",
+    "assessment": "Assessment",
+    "assessmentDescription": "Take the Hugo personality assessment",
     "personalityType": "Personality Type",
     "teamRole": "Team Role",
     "assessmentProgress": "Assessment Progress",
     "teamMembers": "Team Members",
     "upcomingTasks": "Upcoming Tasks",
-    "recentActivity": "Recent Activity"
+    "recentActivity": "Recent Activity",
+    "quickActions": {
+      "title": "Quick Actions",
+      "viewProfile": "View Profile",
+      "takeAssessment": "Take Assessment",
+      "viewTeam": "View Team",
+      "updateProfile": "Update Profile"
+    },
+    "stats": {
+      "assessmentCompleted": "Assessment Completed",
+      "teamMembers": "Team Members",
+      "teamProjects": "Team Projects",
+      "collaborationScore": "Collaboration Score"
+    }
   },
   "teams": {
-    "title": "Teams",
+    "title": "Manage teams and analyze team dynamics",
     "allTeams": "All Teams",
     "myTeams": "My Teams",
     "createTeam": "Create Team",
@@ -136,18 +161,32 @@
     "teamLead": "Team Lead",
     "members": "Members",
     "noTeams": "No teams available",
-    "createFirstTeam": "Create your first team"
+    "createFirstTeam": "Create your first team",
+    "viewDetails": "View Details",
+    "editTeam": "Edit Team",
+    "deleteTeam": "Delete Team",
+    "teamSize": "Team Size",
+    "createdDate": "Created Date",
+    "lastUpdated": "Last Updated"
   },
   "analytics": {
     "title": "Analytics",
-    "overview": "Overview",
+    "overview": "Company insights and team performance metrics",
     "teamAnalytics": "Team Analytics",
     "personalityAnalytics": "Personality Analytics",
     "engagementMetrics": "Engagement Metrics",
     "performanceMetrics": "Performance Metrics",
     "exportData": "Export Data",
     "dateRange": "Date Range",
-    "filterBy": "Filter By"
+    "filterBy": "Filter By",
+    "totalEmployees": "Total Employees",
+    "activeTeams": "Active Teams",
+    "completedAssessments": "Completed Assessments",
+    "averageEngagement": "Average Engagement",
+    "personalityDistribution": "Personality Distribution",
+    "teamPerformance": "Team Performance",
+    "engagementTrends": "Engagement Trends",
+    "assessmentCompletion": "Assessment Completion Rate"
   },
   "profile": {
     "title": "Profile",
@@ -160,13 +199,19 @@
     "position": "Position",
     "startDate": "Start Date",
     "personalityType": "Personality Type",
-    "bio": "Bio",
+    "bio": "Biography",
     "skills": "Skills",
     "interests": "Interests",
     "editProfile": "Edit Profile",
     "changePassword": "Change Password",
     "profileUpdated": "Profile updated",
-    "updateFailed": "Update failed"
+    "updateFailed": "Update failed",
+    "viewProfile": "View Profile",
+    "myPersonality": "My Personality",
+    "assessmentResults": "Assessment Results",
+    "teamCompatibility": "Team Compatibility",
+    "workStyle": "Work Style",
+    "communicationPreferences": "Communication Preferences"
   },
   "assessment": {
     "title": "Assessment",
@@ -179,10 +224,14 @@
     "nextQuestion": "Next Question",
     "previousQuestion": "Previous Question",
     "submit": "Submit",
-    "thankYou": "Thank You!",
+    "thankYou": "Thank you!",
     "assessmentComplete": "Assessment Complete",
     "viewResults": "View Results",
-    "retakeAssessment": "Retake Assessment"
+    "retakeAssessment": "Retake Assessment",
+    "takeHugoAssessment": "Take the Hugo personality assessment",
+    "notCompleted": "Not yet completed",
+    "completed": "Completed",
+    "inProgress": "In Progress"
   },
   "invitations": {
     "title": "Invitations",
