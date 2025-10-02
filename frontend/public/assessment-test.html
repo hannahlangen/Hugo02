@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugo Personality Assessment - Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #2563eb;
+            transition: width 0.3s;
+        }
+        .question {
+            background: #eff6ff;
+            padding: 24px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .answer-btn {
+            width: 100%;
+            padding: 16px;
+            margin: 8px 0;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        .answer-btn:hover {
+            border-color: #2563eb;
+            background: #f9fafb;
+        }
+        .answer-btn.selected {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .result {
+            text-align: center;
+        }
+        .result-icon {
+            font-size: 80px;
+            margin: 20px 0;
+        }
+        .result-type {
+            font-size: 32px;
+            color: #2563eb;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .result-tagline {
+            font-size: 20px;
+            color: #6b7280;
+            font-style: italic;
+            margin: 10px 0;
+        }
+        .result-core {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .strengths {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .strength-item {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // Simplified assessment data
+        const questions = [
+            { id: 1, type: 'V1', text: 'Ich treffe auch schwierige Entscheidungen schnell und entschlossen.' },
+            { id: 2, type: 'V1', text: 'In chaotischen Situationen übernehme ich automatisch die Führung.' },
+            { id: 3, type: 'V1', text: 'Ich denke strategisch und fokussiere mich auf langfristige Ziele.' },
+            { id: 4, type: 'V2', text: 'Ich finde große Erfüllung darin, andere Menschen zu entwickeln und wachsen zu sehen.' },
+            { id: 5, type: 'V2', text: 'Ich erkenne das Potenzial in Menschen, bevor sie es selbst sehen.' },
+            { id: 6, type: 'V2', text: 'Mir ist eine positive Teamkultur wichtiger als kurzfristige Ergebnisse.' }
+        ];
+
+        const types = {
+            'V1': { name: 'Der Wegweiser', icon: '🎯', tagline: 'Zeigt den Weg zu einer besseren Zukunft', core: 'Natürlicher Stratege, der komplexe Situationen durchdringt und klare Richtungen vorgibt', strengths: ['Strategisches Denken', 'Entscheidungskraft', 'Führungsqualität'] },
+            'V2': { name: 'Der Entwickler', icon: '🌱', tagline: 'Hilft Menschen und Teams zu wachsen', core: 'Menschen-Magnet, der das Beste in anderen erkennt und herausholt', strengths: ['Menschen-Entwicklung', 'Empathische Führung', 'Team-Inspiration'] }
+        };
+
+        const answerLabels = [
+            'Trifft gar nicht zu',
+            'Trifft eher nicht zu',
+            'Neutral',
+            'Trifft eher zu',
+            'Trifft voll zu'
+        ];
+
+        let currentQuestion = 0;
+        let answers = {};
+
+        function render() {
+            const app = document.getElementById('app');
+            
+            if (currentQuestion >= questions.length) {
+                // Show results
+                const scores = calculateScores();
+                const primaryType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+                const typeData = types[primaryType];
+                
+                app.innerHTML = `
+                    <div class="card result">
+                        <h1>Ihr Persönlichkeitsprofil</h1>
+                        <div class="result-icon">${typeData.icon}</div>
+                        <div class="result-type">${typeData.name}</div>
+                        <div class="result-tagline">"${typeData.tagline}"</div>
+                        <div class="result-core">
+                            <h3>Kernpersönlichkeit</h3>
+                            <p>${typeData.core}</p>
+                        </div>
+                        <div class="strengths">
+                            <h3>Ihre Stärken</h3>
+                            ${typeData.strengths.map(s => `<div class="strength-item">✓ ${s}</div>`).join('')}
+                        </div>
+                        <button class="btn btn-primary" onclick="location.reload()">Erneut durchführen</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            const progress = Math.round((currentQuestion / questions.length) * 100);
+            
+            app.innerHTML = `
+                <div class="card">
+                    <h1>Hugo Persönlichkeits-Assessment</h1>
+                    <div>Frage ${currentQuestion + 1} von ${questions.length}</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
+                    </div>
+                    
+                    <div class="question">${question.text}</div>
+                    
+                    <div>
+                        ${answerLabels.map((label, index) => `
+                            <button class="answer-btn ${answers[question.id] === index + 1 ? 'selected' : ''}" 
+                                    onclick="selectAnswer(${question.id}, ${index + 1})">
+                                ${label}
+                            </button>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                            ← Zurück
+                        </button>
+                        <button class="btn btn-primary" onclick="nextQuestion()" ${!answers[question.id] ? 'disabled' : ''}>
+                            ${currentQuestion === questions.length - 1 ? 'Ergebnis anzeigen' : 'Weiter →'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectAnswer(questionId, value) {
+            answers[questionId] = value;
+            render();
+            // Auto-advance
+            setTimeout(() => {
+                if (currentQuestion < questions.length - 1) {
+                    nextQuestion();
+                }
+            }, 300);
+        }
+
+        function nextQuestion() {
+            if (answers[questions[currentQuestion].id]) {
+                currentQuestion++;
+                render();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                render();
+            }
+        }
+
+        function calculateScores() {
+            const scores = {};
+            questions.forEach(q => {
+                if (!scores[q.type]) scores[q.type] = 0;
+                scores[q.type] += answers[q.id] || 0;
+            });
+            return scores;
+        }
+
+        // Initial render
+        render();
+    </script>
+</body>
+</html>
