@@ -76,7 +76,18 @@
     "overview": "Oversigt",
     "recentActivity": "Seneste aktivitet",
     "statistics": "Statistik",
-    "quickActions": "Hurtige handlinger"
+    "quickActions": "Hurtige handlinger",
+    "personalDevelopment": "Personlig udvikling",
+    "personalityInsights": "Personlighedsindsigter",
+    "personalityInsightsDescription": "Opdag din Hugo-personlighedstype og styrker",
+    "availableInProfile": "Tilgængelig i Min profil-sektion",
+    "teamCollaboration": "Teamsamarbejde",
+    "teamCollaborationDescription": "Lær hvordan du arbejder effektivt med dit team",
+    "availableInTeam": "Tilgængelig i Mit team-sektion",
+    "componentStatus": "Komponentstatus",
+    "profileConnected": "Min profil: Forbundet",
+    "teamConnected": "Mit team: Forbundet",
+    "assessmentConnected": "Vurdering: Forbundet"
   },
   "hrDashboard": {
     "title": "HR Manager Dashboard",
@@ -116,7 +127,22 @@
       "manageUsers": "Administrer brugere",
       "viewAnalytics": "Se analyser",
       "systemSettings": "Systemindstillinger"
-    }
+    },
+    "subtitle": "Platformadministrator kontrolpanel",
+    "welcomeMessage": "Velkommen! Du er logget ind som platformadministrator.",
+    "companies": "Virksomheder",
+    "users": "Brugere",
+    "analyticsDescription": "Platformdækkende indsigter og præstationsmålinger",
+    "companiesDescription": "Administrer alle virksomheder og organisationer på platformen",
+    "usersDescription": "Administrer alle brugere på tværs af alle virksomheder og teams",
+    "platformAdmin": "Platformadministration",
+    "systemSettings": "Systemindstillinger",
+    "systemSettingsDescription": "Konfigurer platformdækkende indstillinger og præferencer",
+    "securityPermissions": "Sikkerhed & Tilladelser",
+    "securityPermissionsDescription": "Administrer sikkerhedspolitikker og brugertilladelser",
+    "analyticsConnected": "Analyser: Forbundet",
+    "companiesNotImplemented": "Virksomheder: Ikke implementeret",
+    "usersNotImplemented": "Brugere: Ikke implementeret"
   },
   "userDashboard": {
     "title": "Medarbejder-dashboard",

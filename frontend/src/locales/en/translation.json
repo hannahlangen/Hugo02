@@ -76,7 +76,18 @@
     "overview": "Overview",
     "recentActivity": "Recent Activity",
     "statistics": "Statistics",
-    "quickActions": "Quick Actions"
+    "quickActions": "Quick Actions",
+    "personalDevelopment": "Personal Development",
+    "personalityInsights": "Personality Insights",
+    "personalityInsightsDescription": "Discover your Hugo personality type and strengths",
+    "availableInProfile": "Available in My Profile section",
+    "teamCollaboration": "Team Collaboration",
+    "teamCollaborationDescription": "Learn how to work effectively with your team",
+    "availableInTeam": "Available in My Team section",
+    "componentStatus": "Component Status",
+    "profileConnected": "My Profile: Connected",
+    "teamConnected": "My Team: Connected",
+    "assessmentConnected": "Assessment: Connected"
   },
   "hrDashboard": {
     "title": "HR Manager Dashboard",
@@ -116,7 +127,22 @@
       "manageUsers": "Manage Users",
       "viewAnalytics": "View Analytics",
       "systemSettings": "System Settings"
-    }
+    },
+    "subtitle": "Platform Administrator Control Panel",
+    "welcomeMessage": "Welcome! You are logged in as Platform Administrator.",
+    "companies": "Companies",
+    "users": "Users",
+    "analyticsDescription": "Platform-wide insights and performance metrics",
+    "companiesDescription": "Manage all companies and organizations on the platform",
+    "usersDescription": "Manage all users across all companies and teams",
+    "platformAdmin": "Platform Administration",
+    "systemSettings": "System Settings",
+    "systemSettingsDescription": "Configure platform-wide settings and preferences",
+    "securityPermissions": "Security & Permissions",
+    "securityPermissionsDescription": "Manage security policies and user permissions",
+    "analyticsConnected": "Analytics: Connected",
+    "companiesNotImplemented": "Companies: Not Implemented",
+    "usersNotImplemented": "Users: Not Implemented"
   },
   "userDashboard": {
     "title": "Employee Dashboard",

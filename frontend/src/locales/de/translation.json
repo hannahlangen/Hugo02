@@ -76,7 +76,18 @@
     "overview": "Übersicht",
     "recentActivity": "Letzte Aktivitäten",
     "statistics": "Statistiken",
-    "quickActions": "Schnellaktionen"
+    "quickActions": "Schnellaktionen",
+    "personalDevelopment": "Persönliche Entwicklung",
+    "personalityInsights": "Persönlichkeits-Einblicke",
+    "personalityInsightsDescription": "Entdecken Sie Ihren Hugo-Persönlichkeitstyp und Stärken",
+    "availableInProfile": "Verfügbar im Profil-Bereich",
+    "teamCollaboration": "Team-Zusammenarbeit",
+    "teamCollaborationDescription": "Lernen Sie, wie Sie effektiv mit Ihrem Team arbeiten",
+    "availableInTeam": "Verfügbar im Team-Bereich",
+    "componentStatus": "Komponenten-Status",
+    "profileConnected": "Mein Profil: Verbunden",
+    "teamConnected": "Mein Team: Verbunden",
+    "assessmentConnected": "Assessment: Verbunden"
   },
   "hrDashboard": {
     "title": "HR Manager Dashboard",
@@ -116,7 +127,22 @@
       "manageUsers": "Benutzer verwalten",
       "viewAnalytics": "Analysen anzeigen",
       "systemSettings": "Systemeinstellungen"
-    }
+    },
+    "subtitle": "Plattform-Administrator-Kontrollzentrum",
+    "welcomeMessage": "Willkommen! Sie sind als Plattform-Administrator angemeldet.",
+    "companies": "Unternehmen",
+    "users": "Benutzer",
+    "analyticsDescription": "Plattformweite Einblicke und Leistungsmetriken",
+    "companiesDescription": "Verwalten Sie alle Unternehmen und Organisationen auf der Plattform",
+    "usersDescription": "Verwalten Sie alle Benutzer über alle Unternehmen und Teams hinweg",
+    "platformAdmin": "Plattform-Administration",
+    "systemSettings": "Systemeinstellungen",
+    "systemSettingsDescription": "Konfigurieren Sie plattformweite Einstellungen und Präferenzen",
+    "securityPermissions": "Sicherheit & Berechtigungen",
+    "securityPermissionsDescription": "Verwalten Sie Sicherheitsrichtlinien und Benutzerberechtigungen",
+    "analyticsConnected": "Analysen: Verbunden",
+    "companiesNotImplemented": "Unternehmen: Nicht implementiert",
+    "usersNotImplemented": "Benutzer: Nicht implementiert"
   },
   "userDashboard": {
     "title": "Mitarbeiter-Dashboard",
