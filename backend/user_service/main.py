@@ -59,7 +59,7 @@ def create_access_token(data: dict):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
-@app.post("/auth/login", response_model=TokenResponse)
+@app.post("/api/auth/login", response_model=TokenResponse)
 async def login(user_login: UserLogin):
     conn = get_db_connection()
     try:
