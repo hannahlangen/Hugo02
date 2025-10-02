@@ -1,0 +1,286 @@
+{
+  "dimensions": {
+    "vision": {
+      "id": "vision",
+      "icon": "🎯",
+      "name": {
+        "de": "VISION-MENSCHEN",
+        "en": "VISION PEOPLE"
+      },
+      "description": {
+        "de": "Richtung und Zukunft gestalten",
+        "en": "Shaping direction and future"
+      },
+      "types": ["V1", "V2", "V3"]
+    },
+    "innovation": {
+      "id": "innovation",
+      "icon": "💡",
+      "name": {
+        "de": "INNOVATIONS-MENSCHEN",
+        "en": "INNOVATION PEOPLE"
+      },
+      "description": {
+        "de": "Kreativität und Durchbrüche schaffen",
+        "en": "Creating creativity and breakthroughs"
+      },
+      "types": ["I1", "I2", "I3"]
+    },
+    "expertise": {
+      "id": "expertise",
+      "icon": "🎓",
+      "name": {
+        "de": "EXPERTISE-MENSCHEN",
+        "en": "EXPERTISE PEOPLE"
+      },
+      "description": {
+        "de": "Wissen vertiefen und Qualität sichern",
+        "en": "Deepening knowledge and ensuring quality"
+      },
+      "types": ["E1", "E2", "E3"]
+    },
+    "collaboration": {
+      "id": "collaboration",
+      "icon": "🤝",
+      "name": {
+        "de": "KOLLABORATIONS-MENSCHEN",
+        "en": "COLLABORATION PEOPLE"
+      },
+      "description": {
+        "de": "Teamarbeit und Umsetzung fördern",
+        "en": "Promoting teamwork and implementation"
+      },
+      "types": ["C1", "C2", "C3"]
+    }
+  },
+  "types": {
+    "V1": {
+      "id": "V1",
+      "dimension": "vision",
+      "name": {
+        "de": "Der Wegweiser",
+        "en": "The Pathfinder"
+      },
+      "tagline": {
+        "de": "Zeigt den Weg zu einer besseren Zukunft",
+        "en": "Shows the way to a better future"
+      },
+      "corePersonality": {
+        "de": "Der Wegweiser verkörpert den natürlichen Strategen, der komplexe Situationen mit bemerkenswerter Geschwindigkeit durchdringt und klare Richtungen vorgibt. Seine Denkweise ist geprägt von großen Zusammenhängen und langfristigen Perspektiven, während er gleichzeitig die Entschlossenheit besitzt, schwere Entscheidungen mit Zuversicht zu treffen. Die Übernahme von Verantwortung für Ergebnisse erfolgt bei ihm instinktiv, und seine größte Stärke liegt darin, aus chaotischen Situationen Klarheit zu schaffen und Teams sicher durch Phasen der Unsicherheit zu führen.",
+        "en": "The Pathfinder embodies the natural strategist who penetrates complex situations with remarkable speed and provides clear direction. Their thinking is characterized by big-picture perspectives and long-term vision, while simultaneously possessing the determination to make difficult decisions with confidence. Taking responsibility for results comes instinctively, and their greatest strength lies in creating clarity from chaotic situations and safely guiding teams through phases of uncertainty."
+      },
+      "strengths": {
+        "de": [
+          "Strategisches Denken - Erfasst das große Bild und entwickelt langfristige Pläne",
+          "Entscheidungskraft - Handelt schnell und entschlossen bei schwierigen Entscheidungen",
+          "Natürliche Führungsqualität - Übernimmt automatisch Verantwortung und Führung",
+          "Krisenmanagement - Behält in chaotischen Situationen den Überblick",
+          "Zielorientierung - Fokussiert konsequent auf Ergebnisse und Zielerreichung"
+        ],
+        "en": [
+          "Strategic thinking - Grasps the big picture and develops long-term plans",
+          "Decision-making power - Acts quickly and decisively in difficult decisions",
+          "Natural leadership - Automatically takes responsibility and leads",
+          "Crisis management - Maintains overview in chaotic situations",
+          "Goal orientation - Consistently focuses on results and goal achievement"
+        ]
+      },
+      "developmentAreas": {
+        "de": [
+          "Ungeduld mit Details - Verliert bei langwierigen Detaildiskussionen die Geduld",
+          "Emotionale Sensibilität - Übersieht emotionale Bedürfnisse der Teammitglieder",
+          "Delegation - Tendenz, zu viel Kontrolle zu behalten",
+          "Work-Life-Balance - Vernachlässigt persönliche Bedürfnisse",
+          "Feedback-Empfänglichkeit - Schwierigkeiten, Kritik anzunehmen"
+        ],
+        "en": [
+          "Impatience with details - Loses patience during lengthy detail discussions",
+          "Emotional sensitivity - Overlooks emotional needs of team members",
+          "Delegation - Tendency to retain too much control",
+          "Work-life balance - Neglects personal needs",
+          "Receptiveness to feedback - Difficulty accepting criticism"
+        ]
+      },
+      "communication": {
+        "style": {
+          "de": "Direkt, ergebnisorientiert und strukturiert",
+          "en": "Direct, results-oriented and structured"
+        },
+        "optimalDuration": {
+          "de": "15-30 Minuten mit klarer Agenda",
+          "en": "15-30 minutes with clear agenda"
+        },
+        "triggerWords": {
+          "de": ["Ziel", "Strategie", "Entscheidung", "Ergebnis", "Führung"],
+          "en": ["Goal", "Strategy", "Decision", "Result", "Leadership"]
+        },
+        "avoid": {
+          "de": "Lange emotionale Diskussionen und unstrukturierte Meetings",
+          "en": "Long emotional discussions and unstructured meetings"
+        },
+        "typicalPhrases": {
+          "de": ["Was ist unser Ziel?", "Lass uns entscheiden", "Hier ist der Plan"],
+          "en": ["What is our goal?", "Let's decide", "Here's the plan"]
+        }
+      },
+      "workStyle": {
+        "environment": {
+          "de": "Strukturiert mit klaren Hierarchien und Verantwortlichkeiten",
+          "en": "Structured with clear hierarchies and responsibilities"
+        },
+        "pace": {
+          "de": "Schnell und ergebnisorientiert",
+          "en": "Fast and results-oriented"
+        },
+        "decisionStyle": {
+          "de": "Sammelt relevante Informationen und entscheidet dann zügig",
+          "en": "Gathers relevant information and then decides quickly"
+        },
+        "meetingRole": {
+          "de": "Übernimmt natürlich die Leitung und treibt zu Entscheidungen",
+          "en": "Naturally takes the lead and drives toward decisions"
+        },
+        "emailStyle": {
+          "de": "Kurz, direkt und handlungsorientiert",
+          "en": "Short, direct and action-oriented"
+        }
+      },
+      "motivation": {
+        "primary": {
+          "de": "Strategische Herausforderungen und Führungsverantwortung",
+          "en": "Strategic challenges and leadership responsibility"
+        },
+        "energySource": {
+          "de": "Erfolgreiche Zielerreichung und Team-Performance",
+          "en": "Successful goal achievement and team performance"
+        },
+        "rewards": {
+          "de": "Anerkennung für strategische Erfolge und Führungsleistung",
+          "en": "Recognition for strategic successes and leadership performance"
+        },
+        "purpose": {
+          "de": "Erreichen bedeutsamer und herausfordernder Ziele",
+          "en": "Achieving meaningful and challenging goals"
+        },
+        "growth": {
+          "de": "Größere Verantwortung und komplexere Herausforderungen",
+          "en": "Greater responsibility and more complex challenges"
+        }
+      },
+      "stressSignature": {
+        "triggers": {
+          "de": ["Ineffizienz", "Kontrollverlust", "Endlose Diskussionen"],
+          "en": ["Inefficiency", "Loss of control", "Endless discussions"]
+        },
+        "underStress": {
+          "de": "Wird dominanter, ungeduldiger und weniger empathisch",
+          "en": "Becomes more dominant, impatient and less empathetic"
+        },
+        "warningSigns": {
+          "de": ["Mikromanagement", "Ungeduld mit anderen", "Isolation"],
+          "en": ["Micromanagement", "Impatience with others", "Isolation"]
+        },
+        "recovery": {
+          "de": ["Strategische Planung", "Körperliche Aktivität", "Klare Ziele setzen"],
+          "en": ["Strategic planning", "Physical activity", "Setting clear goals"]
+        },
+        "support": {
+          "de": "Kompetente Hilfe bei Detailarbeit",
+          "en": "Competent help with detail work"
+        }
+      },
+      "teamChemistry": {
+        "bestSynergies": [
+          {
+            "type": "E2",
+            "reason": {
+              "de": "Wegweiser setzt Vision, Meister liefert Qualität",
+              "en": "Pathfinder sets vision, Master delivers quality"
+            }
+          },
+          {
+            "type": "C1",
+            "reason": {
+              "de": "Wegweiser führt, Harmonizer unterstützt das Team",
+              "en": "Pathfinder leads, Harmonizer supports the team"
+            }
+          },
+          {
+            "type": "I2",
+            "reason": {
+              "de": "Strategische Allianz für langfristige Innovation",
+              "en": "Strategic alliance for long-term innovation"
+            }
+          }
+        ],
+        "potentialConflicts": [
+          {
+            "type": "I1",
+            "reason": {
+              "de": "Entscheidungsdrang trifft auf Experimentierfreude",
+              "en": "Decision drive meets experimental enthusiasm"
+            }
+          },
+          {
+            "type": "C2",
+            "reason": {
+              "de": "Schnelle Entscheidungen vs. Konsenssuche",
+              "en": "Quick decisions vs. consensus seeking"
+            }
+          },
+          {
+            "type": "E1",
+            "reason": {
+              "de": "Handlungsdrang vs. gründliche Analyse",
+              "en": "Action drive vs. thorough analysis"
+            }
+          }
+        ]
+      },
+      "leadershipStyle": {
+        "approach": {
+          "de": "Direktive Führung mit klaren Erwartungen und Zielen",
+          "en": "Directive leadership with clear expectations and goals"
+        },
+        "delegation": {
+          "de": "Gibt Ziele vor und lässt Freiraum bei der Umsetzung",
+          "en": "Sets goals and allows freedom in implementation"
+        },
+        "motivation": {
+          "de": "Durch herausfordernde Ziele und Wachstumschancen",
+          "en": "Through challenging goals and growth opportunities"
+        },
+        "conflictResolution": {
+          "de": "Direkt und entscheidungsorientiert",
+          "en": "Direct and decision-oriented"
+        },
+        "development": {
+          "de": "Fördert durch 'stretch assignments'",
+          "en": "Promotes through stretch assignments"
+        }
+      },
+      "careerPotential": {
+        "naturalRoles": {
+          "de": ["CEO", "General Manager", "Strategic Director", "Abteilungsleiter"],
+          "en": ["CEO", "General Manager", "Strategic Director", "Department Head"]
+        },
+        "growthPath": {
+          "de": "Teamleiter → Abteilungsleiter → C-Level",
+          "en": "Team Lead → Department Head → C-Level"
+        },
+        "developmentFocus": {
+          "de": "Emotionale Intelligenz und empathische Führung",
+          "en": "Emotional intelligence and empathetic leadership"
+        },
+        "mentoringNeeds": {
+          "de": "People Leadership und Geduld",
+          "en": "People leadership and patience"
+        },
+        "longTermPotential": {
+          "de": ["Unternehmensführung", "Board-Positionen", "Unternehmertum"],
+          "en": ["Corporate leadership", "Board positions", "Entrepreneurship"]
+        }
+      }
+    }
+  }
+}

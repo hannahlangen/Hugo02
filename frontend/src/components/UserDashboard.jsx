@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/RoleBasedAuthContext';
 import ResponsiveNavigation from './ResponsiveNavigation';
 import TeamsPage from './TeamsPage';
-import TwoStageHugoAssessment from './TwoStageHugoAssessment';
+import HugoPersonalityAssessment from './HugoPersonalityAssessment';
 import UserProfile from './UserProfile';
 
 const UserDashboard = () => {
@@ -47,7 +47,7 @@ const UserDashboard = () => {
       case 'team':
         return <TeamsPage />;
       case 'assessment':
-        return <TwoStageHugoAssessment />;
+        return <HugoPersonalityAssessment onComplete={(profile) => console.log('Assessment completed:', profile)} />;
       case 'dashboard':
       default:
         return (
