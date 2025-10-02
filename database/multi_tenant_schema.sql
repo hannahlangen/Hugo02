@@ -244,68 +244,97 @@ CREATE TABLE IF NOT EXISTS hugo_personality_types (
 );
 
 -- (12 Typen) – idempotent
+
+-- (12 Typen) – Hugo System Official Types
 INSERT INTO hugo_personality_types (code, name, dimension, description, strengths, development_areas, ideal_roles, communication_style, team_contribution, color_primary, color_secondary) VALUES
-('V1','Pathfinder','Vision','Strategic visionary who sees the big picture and charts new territories',
- ARRAY['Strategic thinking','Innovation','Leadership','Future-oriented'],
- ARRAY['Detail execution','Patience with routine tasks','Delegation'],
- ARRAY['CEO','Strategy Director','Innovation Lead','Entrepreneur'],
- 'Direct, inspiring, future-focused','Sets direction and motivates team toward long-term goals','#8B5CF6','#A78BFA'),
-('V2','Developer','Vision','Systematic builder who transforms visions into structured realities',
- ARRAY['System design','Process optimization','Project management','Quality focus'],
- ARRAY['Flexibility','Rapid prototyping','Risk tolerance'],
- ARRAY['CTO','Product Manager','System Architect','Operations Director'],
- 'Structured, methodical, solution-oriented','Builds robust systems and processes for team success','#7C3AED','#8B5CF6'),
-('V3','Organizer','Vision','Efficient coordinator who ensures visions become actionable plans',
- ARRAY['Planning','Coordination','Efficiency','Resource management'],
- ARRAY['Spontaneity','Ambiguity tolerance','Creative thinking'],
- ARRAY['COO','Program Manager','Business Analyst','Team Lead'],
- 'Clear, organized, goal-oriented','Ensures team stays organized and on track','#6D28D9','#7C3AED'),
-('I1','Creator','Innovation','Original thinker who generates breakthrough ideas and concepts',
- ARRAY['Creativity','Original thinking','Problem solving','Inspiration'],
- ARRAY['Implementation','Routine tasks','Detail focus'],
- ARRAY['Creative Director','R&D Lead','Innovation Manager','Designer'],
- 'Inspiring, imaginative, conceptual','Brings fresh perspectives and creative solutions','#F59E0B','#FBBF24'),
-('I2','Experimenter','Innovation','Hands-on innovator who tests and refines new approaches',
- ARRAY['Experimentation','Rapid prototyping','Learning agility','Adaptability'],
- ARRAY['Long-term planning','Risk aversion','Perfectionism'],
- ARRAY['Product Developer','UX Researcher','Innovation Specialist','Startup Founder'],
- 'Curious, experimental, iterative','Tests ideas and helps team learn through experimentation','#D97706','#F59E0B'),
-('I3','Optimizer','Innovation','Continuous improver who enhances existing solutions',
- ARRAY['Process improvement','Efficiency optimization','Quality enhancement','Analysis'],
- ARRAY['Radical change','Unstructured environments','Blue-sky thinking'],
- ARRAY['Process Manager','Quality Lead','Business Improvement','Consultant'],
- 'Analytical, improvement-focused, systematic','Continuously improves team processes and outcomes','#B45309','#D97706'),
-('E1','Specialist','Expertise','Deep expert who masters specific domains and technologies',
- ARRAY['Deep expertise','Technical mastery','Quality standards','Precision'],
- ARRAY['Broad perspective','Delegation','Non-technical communication'],
- ARRAY['Technical Lead','Subject Matter Expert','Researcher','Consultant'],
- 'Precise, detailed, knowledge-focused','Provides deep expertise and maintains quality standards','#10B981','#34D399'),
-('E2','Advisor','Expertise','Knowledgeable guide who shares expertise to help others succeed',
- ARRAY['Knowledge sharing','Mentoring','Problem solving','Teaching'],
- ARRAY['Self-promotion','Competitive environments','Time management'],
- ARRAY['Senior Consultant','Mentor','Training Manager','Technical Advisor'],
- 'Supportive, educational, collaborative','Develops team capabilities through knowledge sharing','#059669','#10B981'),
-('E3','Implementer','Expertise','Reliable executor who delivers high-quality results consistently',
- ARRAY['Execution excellence','Reliability','Quality delivery','Consistency'],
- ARRAY['Innovation','Ambiguity','Rapid change'],
- ARRAY['Senior Developer','Operations Manager','Quality Assurance','Project Lead'],
- 'Reliable, thorough, results-oriented','Ensures consistent, high-quality delivery','#047857','#059669'),
-('C1','Networker','Connection','Relationship builder who connects people and creates opportunities',
- ARRAY['Relationship building','Networking','Communication','Opportunity creation'],
- ARRAY['Deep technical work','Solitary tasks','Conflict situations'],
- ARRAY['Sales Director','Partnership Manager','Community Manager','Business Development'],
- 'Engaging, enthusiastic, people-focused','Builds external connections and opportunities for team','#EF4444','#F87171'),
-('C2','Collaborator','Connection','Team player who facilitates cooperation and shared success',
- ARRAY['Teamwork','Facilitation','Consensus building','Cooperation'],
- ARRAY['Individual accountability','Difficult decisions','Conflict resolution'],
- ARRAY['Team Lead','Scrum Master','HR Manager','Project Coordinator'],
- 'Collaborative, inclusive, team-oriented','Facilitates team collaboration and shared decision-making','#DC2626','#EF4444'),
-('C3','Supporter','Connection','Caring helper who ensures team members feel valued and supported',
- ARRAY['Empathy','Support','Team morale','Individual care'],
- ARRAY['Tough decisions','Performance management','Competitive pressure'],
- ARRAY['HR Business Partner','Team Coach','Customer Success','Support Manager'],
- 'Empathetic, caring, supportive','Maintains team morale and individual well-being','#B91C1C','#DC2626')
-ON CONFLICT (code) DO NOTHING;
+
+-- VISION Dimension
+('V1','Der Wegweiser / The Pathfinder','Vision','Zeigt den Weg zu einer besseren Zukunft. Natürlicher Stratege, der komplexe Situationen durchdringt und klare Richtungen vorgibt.',
+ ARRAY['Strategisches Denken','Entscheidungskraft','Führungsqualität','Visionäre Ausrichtung'],
+ ARRAY['Geduld mit Details','Delegation','Mikromanagement vermeiden'],
+ ARRAY['CEO','Strategie-Direktor','Innovations-Lead','Unternehmer'],
+ 'Direkt, inspirierend, zukunftsorientiert','Gibt Richtung vor und motiviert das Team zu langfristigen Zielen','#8B5CF6','#A78BFA'),
+
+('V2','Der Entwickler / The Developer','Vision','Hilft Menschen und Teams zu wachsen. Menschen-Magnet, der das Beste in anderen erkennt und herausholt.',
+ ARRAY['Menschen-Entwicklung','Empathische Führung','Team-Inspiration','Potenzial-Erkennung'],
+ ARRAY['Schwierige Gespräche','Grenzen setzen','Distanz wahren'],
+ ARRAY['People Manager','Talent-Entwickler','Coach','HR-Direktor'],
+ 'Unterstützend, entwicklungsorientiert, empathisch','Entwickelt Teammitglieder und fördert persönliches Wachstum','#7C3AED','#8B5CF6'),
+
+('V3','Der Organisator / The Organizer','Vision','Schafft Ordnung und Struktur. Meister der Effizienz, der Chaos in funktionierende Systeme verwandelt.',
+ ARRAY['Planung','Koordination','Effizienz','Ressourcen-Management'],
+ ARRAY['Flexibilität','Spontanität','Ambiguität-Toleranz'],
+ ARRAY['COO','Programm-Manager','Business Analyst','Team Lead'],
+ 'Strukturiert, methodisch, lösungsorientiert','Schafft Ordnung und sorgt für reibungslose Abläufe','#6D28D9','#7C3AED'),
+
+-- INNOVATION Dimension  
+('I1','Der Pionier / The Pioneer','Innovation','Erschließt neue Territorien. Mutiger Vorreiter, der unbekannte Wege geht und Neues entdeckt.',
+ ARRAY['Innovation','Risikobereitschaft','Kreativität','Pioniergeist'],
+ ARRAY['Ausdauer','Detailarbeit','Routine-Aufgaben'],
+ ARRAY['Innovations-Manager','Startup-Gründer','R&D-Lead','Visionär'],
+ 'Mutig, experimentierfreudig, zukunftsorientiert','Bringt radikale neue Ideen und Ansätze ins Team','#F59E0B','#FBBF24'),
+
+('I2','Der Architekt / The Architect','Innovation','Entwirft neue Lösungen. Kreativer Konstrukteur, der innovative Konzepte in funktionierende Designs verwandelt.',
+ ARRAY['System-Design','Konzeptionelle Stärke','Problemlösung','Technische Innovation'],
+ ARRAY['Schnelle Umsetzung','Pragmatismus','Kompromisse'],
+ ARRAY['Solution Architect','Design Lead','CTO','Produkt-Architekt'],
+ 'Konzeptionell, durchdacht, designorientiert','Entwickelt innovative Lösungsarchitekturen für komplexe Probleme','#D97706','#F59E0B'),
+
+('I3','Der Inspirator / The Inspirator','Innovation','Begeistert und motiviert. Charismatischer Katalysator, der andere für neue Ideen entflammt.',
+ ARRAY['Begeisterungsfähigkeit','Kommunikation','Motivation','Energie'],
+ ARRAY['Kontinuität','Detailarbeit','Nachbereitung'],
+ ARRAY['Change Agent','Motivations-Speaker','Marketing-Lead','Kultur-Botschafter'],
+ 'Energiegeladen, begeisternd, mitreißend','Motiviert das Team und schafft Begeisterung für Neues','#B45309','#D97706'),
+
+-- EXPERTISE Dimension
+('E1','Der Forscher / The Researcher','Expertise','Erforscht die Tiefe. Neugieriger Analytiker, der komplexe Zusammenhänge durchdringt und neue Erkenntnisse gewinnt.',
+ ARRAY['Analytisches Denken','Forschung','Tiefes Verständnis','Wissbegierde'],
+ ARRAY['Praktische Umsetzung','Zeitmanagement','Kommunikation von Komplexität'],
+ ARRAY['Researcher','Data Scientist','Analyst','Wissenschaftler'],
+ 'Analytisch, gründlich, wissensorientiert','Liefert fundierte Analysen und tiefes Fachwissen','#10B981','#34D399'),
+
+('E2','Der Meister / The Master','Expertise','Beherrscht sein Handwerk. Exzellenter Könner, der durch jahrelange Praxis zur Perfektion gelangt ist.',
+ ARRAY['Meisterschaft','Qualität','Präzision','Handwerkskunst'],
+ ARRAY['Delegation','Wissenstransfer','Geduld mit Anfängern'],
+ ARRAY['Senior Expert','Master Craftsman','Technical Lead','Qualitäts-Manager'],
+ 'Präzise, qualitätsorientiert, meisterhaft','Setzt höchste Qualitätsstandards und liefert exzellente Ergebnisse','#059669','#10B981'),
+
+('E3','Der Berater / The Advisor','Expertise','Teilt sein Wissen. Weiser Ratgeber, der andere durch Expertise und Erfahrung zum Erfolg führt.',
+ ARRAY['Beratung','Wissenstransfer','Mentoring','Problemlösung'],
+ ARRAY['Selbstvermarktung','Abgrenzung','Zeitmanagement'],
+ ARRAY['Senior Consultant','Mentor','Berater','Fachexperte'],
+ 'Unterstützend, lehrend, beratend','Entwickelt Team-Fähigkeiten durch Wissensaustausch','#047857','#059669'),
+
+-- KOLLABORATION Dimension
+('C1','Der Harmonizer / The Harmonizer','Kollaboration','Schafft Harmonie. Diplomatischer Vermittler, der Konflikte löst und ein positives Miteinander fördert.',
+ ARRAY['Konfliktlösung','Diplomatie','Empathie','Harmonie-Schaffung'],
+ ARRAY['Durchsetzungsvermögen','Schwierige Entscheidungen','Konfrontation'],
+ ARRAY['Mediator','HR Business Partner','Team Coach','Konflikt-Manager'],
+ 'Diplomatisch, ausgleichend, harmonisierend','Schafft positive Atmosphäre und löst Konflikte','#EF4444','#F87171'),
+
+('C2','Der Brückenbauer / The Bridge Builder','Kollaboration','Verbindet Menschen. Geschickter Netzwerker, der Silos überwindet und Zusammenarbeit ermöglicht.',
+ ARRAY['Netzwerken','Verbindungen schaffen','Zusammenarbeit','Kommunikation'],
+ ARRAY['Tiefgang','Fokus','Spezialisierung'],
+ ARRAY['Partnership Manager','Community Manager','Scrum Master','Koordinator'],
+ 'Verbindend, netzwerkend, kollaborativ','Baut Brücken zwischen Teams und Abteilungen','#DC2626','#EF4444'),
+
+('C3','Der Umsetzer / The Implementer','Kollaboration','Setzt gemeinsam um. Verlässlicher Teamplayer, der Pläne in die Tat umsetzt und Ergebnisse liefert.',
+ ARRAY['Umsetzungsstärke','Zuverlässigkeit','Teamwork','Ergebnisorientierung'],
+ ARRAY['Eigeninitiative','Innovation','Strategisches Denken'],
+ ARRAY['Project Manager','Operations Lead','Team Lead','Delivery Manager'],
+ 'Zuverlässig, umsetzungsstark, teamorientiert','Sorgt für konsequente Umsetzung und Zielerreichung','#B91C1C','#DC2626')
+
+ON CONFLICT (code) DO UPDATE SET
+  name = EXCLUDED.name,
+  dimension = EXCLUDED.dimension,
+  description = EXCLUDED.description,
+  strengths = EXCLUDED.strengths,
+  development_areas = EXCLUDED.development_areas,
+  ideal_roles = EXCLUDED.ideal_roles,
+  communication_style = EXCLUDED.communication_style,
+  team_contribution = EXCLUDED.team_contribution,
+  color_primary = EXCLUDED.color_primary,
+  color_secondary = EXCLUDED.color_secondary;
 
 -- Culture Map
 CREATE TABLE IF NOT EXISTS culture_dimensions (
