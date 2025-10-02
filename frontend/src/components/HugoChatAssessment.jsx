@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Send, User, Bot } from 'lucide-react';
 import { getCulturalProfile, interpretCulturalDimensions } from '../data/cultural/culturalDimensions';
-import { personalityTypes } from '../data/personality/personalityTypes';
+import PERSONALITY_TYPES from '../data/personality/personalityTypes';
 import { dimensionQuestions, analyzeDimensionResponse, analyzeTypeResponse } from '../data/assessment/openEndedQuestions';
 
 const HugoChatAssessment = () => {
@@ -322,7 +322,7 @@ const HugoChatAssessment = () => {
       finalType
     }));
 
-    const typeInfo = personalityTypes.find(t => t.id === finalType);
+    const typeInfo = PERSONALITY_TYPES[finalType];
     
     const responses = {
       de: `🎉 **Fantastisch!** Ich habe deine Persönlichkeit analysiert!\n\nDu bist ein **${typeInfo.name.de}** (${finalType})!\n\n**${typeInfo.tagline.de}**\n\n${typeInfo.description.de}\n\n**Deine Stärken:**\n${typeInfo.strengths.de.slice(0, 3).map(s => `• ${s}`).join('\n')}\n\nMöchtest du mehr über deinen Typ erfahren? 😊`,
