@@ -124,6 +124,8 @@ services:
   # Frontend
   frontend:
     build: ./frontend
+    ports:
+      - "3000:80"
     depends_on:
       - user-service
       - assessment-service
