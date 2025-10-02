@@ -59,3 +59,4 @@ build/
 *.bak
 *.backup
 .cache/
+.deployment-guide.md

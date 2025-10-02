@@ -34,7 +34,15 @@ export const API_ENDPOINTS = {
   TEAMS: `${API_BASE_URL}/api/teams`,
   
   // Chat Assessment endpoints
-  CHAT_ASSESSMENT: `${API_BASE_URL}/api/chat-assessment`
+  CHAT_ASSESSMENT: `${API_BASE_URL}/api/chat-assessment`,
+  
+  // Recommendation endpoints
+  RECOMMENDATIONS: `${API_BASE_URL}/api/recommendations`,
+  RECOMMENDATIONS_STATS: `${API_BASE_URL}/api/recommendations/stats`,
+  RECOMMENDATIONS_FIND_MEMBER: `${API_BASE_URL}/api/recommendations/find-member`,
+  RECOMMENDATIONS_BUILD_TEAM: `${API_BASE_URL}/api/recommendations/build-team`,
+  RECOMMENDATIONS_TEAM_GAPS: (teamId) => `${API_BASE_URL}/api/recommendations/team-gaps/${teamId}`,
+  RECOMMENDATIONS_FEEDBACK: `${API_BASE_URL}/api/recommendations/feedback`
 };
 
 // Helper function to make API calls

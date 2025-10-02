@@ -21,10 +21,18 @@ const RecommendationDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch('http://localhost:8006/api/recommendations/stats');
+      const baseUrl = window.location.port === '3000' 
+        ? `http://${window.location.hostname}:8006`
+        : '';
+      const response = await fetch(`${baseUrl}/api/recommendations/stats`);
       if (response.ok) {
         const data = await response.json();
-        setStats(data);
+        setStats({
+          totalRecommendations: data.total_recommendations,
+          acceptedRecommendations: data.accepted_recommendations,
+          acceptanceRate: data.acceptance_rate,
+          averageSynergyImprovement: data.average_synergy_improvement
+        });
       }
     } catch (error) {
       console.error('Error fetching stats:', error);
