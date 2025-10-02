@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/RoleBasedAuthContext';
 import ResponsiveNavigation from './ResponsiveNavigation';
 import TeamsPage from './TeamsPage';
 import AnalyticsPage from './AnalyticsPage';
+import RecommendationDashboard from './RecommendationDashboard';
 
 const HRManagerDashboard = () => {
   const { t } = useTranslation();
@@ -22,6 +23,12 @@ const HRManagerDashboard = () => {
       path: 'teams',
       icon: '👥',
       action: () => setCurrentPage('teams')
+    },
+    {
+      label: 'Recommendations',
+      path: 'recommendations',
+      icon: '🎯',
+      action: () => setCurrentPage('recommendations')
     },
     {
       label: t('hrDashboard.quickActions.viewReports'),
@@ -45,6 +52,8 @@ const HRManagerDashboard = () => {
     switch (currentPage) {
       case 'teams':
         return <TeamsPage />;
+      case 'recommendations':
+        return <RecommendationDashboard />;
       case 'reports':
         return <AnalyticsPage />;
       case 'dashboard':
