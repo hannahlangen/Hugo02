@@ -1,0 +1,164 @@
+version: '3.8'
+
+services:
+  # Database
+  postgres:
+    image: postgres:15
+    command:
+      - "postgres"
+      - "-c"
+      - "log_line_prefix=%m [%p] %h %a user=%u db=%d"
+      - "-c"
+      - "log_connections=on"
+      - "-c"
+      - "log_hostname=on"
+    environment:
+      POSTGRES_DB: hugo_platform
+      POSTGRES_USER: hugo_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init_multi_tenant.sql:/docker-entrypoint-initdb.d/01_init_multi_tenant.sql
+      - ./database/multi_tenant_schema.sql:/docker-entrypoint-initdb.d/02_multi_tenant_schema.sql
+      - ./database/demo_users.sql:/docker-entrypoint-initdb.d/03_demo_users.sql
+    ports:
+      - "127.0.0.1:5432:5432"
+      #- "5432:5432"
+    networks:
+      - hugo-network
+
+  # User Service
+  user-service:
+    build: ./backend/user_service
+    environment:
+      DATABASE_URL: postgresql://hugo_user:${POSTGRES_PASSWORD}@postgres:5432/hugo_platform
+      DB_HOST: postgres
+      DB_NAME: hugo_platform
+      DB_USER: hugo_user
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PORT: 5432
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "8001:8001"
+    depends_on:
+      - postgres
+    networks:
+      - hugo-network
+
+  # Assessment Service
+  assessment-service:
+    build: ./backend/assessment_service
+    environment:
+      DATABASE_URL: postgresql://hugo_user:${POSTGRES_PASSWORD}@postgres:5432/hugo_platform
+      DB_HOST: postgres
+      DB_NAME: hugo_platform
+      DB_USER: hugo_user
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PORT: 5432
+    ports:
+      - "8003:8003"
+    depends_on:
+      - postgres
+    networks:
+      - hugo-network
+
+  # Hugo Engine Service
+  hugo-engine:
+    build: ./backend/hugo_engine
+    environment:
+      DATABASE_URL: postgresql://hugo_user:${POSTGRES_PASSWORD}@postgres:5432/hugo_platform
+      DB_HOST: postgres
+      DB_NAME: hugo_platform
+      DB_USER: hugo_user
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PORT: 5432
+    ports:
+      - "8002:8002"
+    depends_on:
+      - postgres
+    networks:
+      - hugo-network
+
+  # Team Service
+  team-service:
+    build: ./backend/team_service
+    environment:
+      DATABASE_URL: postgresql://hugo_user:${POSTGRES_PASSWORD}@postgres:5432/hugo_platform
+      DB_HOST: postgres
+      DB_NAME: hugo_platform
+      DB_USER: hugo_user
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PORT: 5432
+    ports:
+      - "8004:8004"
+    depends_on:
+      - postgres
+    networks:
+      - hugo-network
+
+  # Chat Assessment Service
+  chat-assessment-service:
+    build: ./backend/chat_assessment_service
+    environment:
+      DATABASE_URL: postgresql://hugo_user:${POSTGRES_PASSWORD}@postgres:5432/hugo_platform
+      DB_HOST: postgres
+      DB_NAME: hugo_platform
+      DB_USER: hugo_user
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_PORT: 5432
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      HUGO_ENGINE_URL: http://hugo-engine:8002
+      FRONTEND_URL: http://localhost
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+    ports:
+      - "8005:8005"
+    depends_on:
+      - postgres
+      - hugo-engine
+    networks:
+      - hugo-network
+
+  # Frontend
+  frontend:
+    build: ./frontend
+    depends_on:
+      - user-service
+      - assessment-service
+      - hugo-engine
+      - team-service
+      - chat-assessment-service
+    networks:
+      - hugo-network
+
+  # Landingpage
+  landingpage:
+    build: ./landing
+    networks:
+      - hugo-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - user-service
+      - assessment-service
+      - hugo-engine
+      - team-service
+      - chat-assessment-service
+      - landingpage
+    networks:
+      - hugo-network
+
+volumes:
+  postgres_data:
+
+networks:
+  hugo-network:
+    driver: bridge
