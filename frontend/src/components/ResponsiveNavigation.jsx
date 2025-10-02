@@ -10,7 +10,8 @@ const ResponsiveNavigation = ({ currentPage, onNavigate, menuItems = [] }) => {
 
   const handleLogout = () => {
     logout();
-    window.location.reload();
+    // Redirect to login page
+    window.location.href = '/';
   };
 
   const handleMenuClick = (item) => {
@@ -76,6 +77,16 @@ const ResponsiveNavigation = ({ currentPage, onNavigate, menuItems = [] }) => {
             <span className="text-sm text-gray-600">
               {t('dashboard.welcome')}, {user?.first_name} {user?.last_name}
             </span>
+            <button
+              onClick={handleLogout}
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-md transition-colors"
+              title={t('navigation.logout')}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              <span>{t('navigation.logout')}</span>
+            </button>
             <div className="relative group">
               <button className="flex items-center space-x-2 text-sm text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
@@ -102,12 +113,6 @@ const ResponsiveNavigation = ({ currentPage, onNavigate, menuItems = [] }) => {
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   {t('navigation.profile')}
-                </button>
-                <button
-                  onClick={handleLogout}
-                  className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
-                >
-                  {t('navigation.logout')}
                 </button>
               </div>
             </div>
