@@ -417,9 +417,21 @@ async def create_chat_session(registration: ParticipantRegistration):
             registration.invitation_token
         )
         
+        # Send welcome message and first question
+        welcome_message = f"Hallo {registration.participant_name}! Willkommen bei Hugo. Ich freue mich darauf, dich kennenzulernen! 🚀\n\n{CHAT_QUESTIONS[0]['question']}"
+        
+        # Store welcome message
+        await conn.execute(
+            """
+            INSERT INTO chat_messages (session_id, message, is_user, timestamp)
+            VALUES ($1, $2, $3, $4)
+            """,
+            session_id, welcome_message, False, datetime.utcnow()
+        )
+        
         return {
             "session_id": session_id,
-            "message": f"Hallo {registration.participant_name}! Willkommen bei Hugo. Ich freue mich darauf, dich kennenzulernen! 🚀"
+            "message": welcome_message
         }
         
     finally:
@@ -490,10 +502,10 @@ async def send_message(session_id: str, message: ChatMessage):
                 "timestamp": datetime.utcnow().isoformat()
             })
             
-            # Generate contextual response
+            # Generate contextual follow-up response
             bot_response = await generate_chat_response(question_data, message.message, session_data)
             
-            # Move to next question
+            # Move to next question AFTER processing current one
             current_question += 1
             
             # Check if assessment is complete
