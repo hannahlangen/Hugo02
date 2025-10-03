@@ -43,7 +43,7 @@ const ResponsiveNavigation = ({ currentPage, onNavigate, menuItems = [] }) => {
           {/* Logo and Title */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold text-gray-900">Hugo Platform</h1>
+              <h1 className="text-xl font-bold text-gray-900">Hugo</h1>
             </div>
           </div>
 
@@ -63,7 +63,6 @@ const ResponsiveNavigation = ({ currentPage, onNavigate, menuItems = [] }) => {
                 }`}
               >
                 <div className="flex items-center space-x-2">
-                  {item.icon && <span className="text-lg">{item.icon}</span>}
                   <span>{item.label}</span>
                   {item.disabled && <span className="text-xs text-orange-500 ml-1">Coming Soon</span>}
                 </div>
