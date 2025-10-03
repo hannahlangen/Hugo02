@@ -5,6 +5,7 @@ import ResponsiveNavigation from './ResponsiveNavigation';
 import TeamsPage from './TeamsPage';
 import AnalyticsPage from './AnalyticsPage';
 import RecommendationDashboard from './RecommendationDashboard';
+import ErrorBoundary from './ErrorBoundary';
 
 const HRManagerDashboard = () => {
   const { t } = useTranslation();
@@ -206,7 +207,9 @@ const HRManagerDashboard = () => {
       />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {renderCurrentPage()}
+        <ErrorBoundary>
+          {renderCurrentPage()}
+        </ErrorBoundary>
       </main>
     </div>
   );
