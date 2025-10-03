@@ -16,6 +16,7 @@ import {
   Search,
   Filter
 } from 'lucide-react'
+import FindMemberWizard from './FindMemberWizard'
 
 const RecommendationDashboard = () => {
   const { user } = useAuth();
@@ -267,23 +268,7 @@ const RecommendationDashboard = () => {
         </TabsContent>
 
         <TabsContent value="find-member" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Find Perfect Team Member</CardTitle>
-              <CardDescription>
-                This feature will help you find the ideal candidate to add to your existing team
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col items-center justify-center py-12 space-y-4">
-                <Lightbulb className="h-16 w-16 text-muted-foreground" />
-                <h3 className="text-xl font-semibold">Coming Soon</h3>
-                <p className="text-center text-muted-foreground max-w-md">
-                  The Find Member wizard is currently under development. It will allow you to specify team requirements and get AI-powered candidate recommendations.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <FindMemberWizard />
         </TabsContent>
 
         <TabsContent value="build-team" className="space-y-4">
