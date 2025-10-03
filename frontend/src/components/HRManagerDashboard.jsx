@@ -49,15 +49,20 @@ const HRManagerDashboard = () => {
   };
 
   const renderCurrentPage = () => {
+    console.log('=== HRManagerDashboard renderCurrentPage ===', currentPage);
     switch (currentPage) {
       case 'teams':
+        console.log('Rendering TeamsPage');
         return <TeamsPage />;
       case 'recommendations':
+        console.log('Rendering RecommendationDashboard');
         return <RecommendationDashboard />;
       case 'reports':
+        console.log('Rendering AnalyticsPage');
         return <AnalyticsPage />;
       case 'dashboard':
       default:
+        console.log('Rendering Dashboard');
         return (
           <div className="space-y-6">
             {/* Welcome Section */}
