@@ -207,7 +207,7 @@ Structured logging is implemented across all services for:
 The platform supports international teams through:
 
 - Multi-language interface (future enhancement)
-- Cultural dimension analysis (Erin Meyer's Culture Map)
+- Cultural dimension analysis
 - Timezone-aware scheduling
 - Localized communication strategies
 
@@ -246,13 +246,6 @@ For support and questions:
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Inspired by MBTI, Enneagram, and Big Five personality models
-- Integrated with Erin Meyer's Culture Map framework
-- Built with modern web technologies and best practices
-- Designed for enterprise-scale deployment and usage
 
 ---
 
