@@ -489,6 +489,17 @@ async def send_message(session_id: str, message: ChatMessage):
         responses = json.loads(session_data["responses"])
         dimension_scores = json.loads(session_data["dimension_scores"])
         
+        # ===== EXTENSIVE LOGGING START =====
+        print(f"\n{'='*60}")
+        print(f"MESSAGE RECEIVED")
+        print(f"{'='*60}")
+        print(f"Session ID: {session_id}")
+        print(f"User Message: {message.message[:100]}...")
+        print(f"Current Question Index (from DB): {current_question}")
+        print(f"Total Responses So Far: {len(responses)}")
+        print(f"Is Completed: {session_data['is_completed']}")
+        print(f"{'='*60}\n")
+        
         # Store user message
         await conn.execute(
             """
@@ -503,6 +514,10 @@ async def send_message(session_id: str, message: ChatMessage):
         if current_question < len(CHAT_QUESTIONS):
             # Get the question that was just answered
             answered_question = CHAT_QUESTIONS[current_question]
+            
+            print(f"Processing Answer for Question #{current_question}")
+            print(f"Question Text: {answered_question['question'][:80]}...")
+            print(f"Dimension: {answered_question['dimension']}")
             
             # Analyze response with LLM
             scores = await analyze_response_with_llm(
@@ -530,9 +545,14 @@ async def send_message(session_id: str, message: ChatMessage):
             
             # Generate contextual follow-up response
             bot_response = await generate_chat_response(answered_question, message.message, session_data)
+            print(f"Generated Bot Response: {bot_response[:80]}...")
             
             # Move to NEXT question index
             next_question_index = current_question + 1
+            print(f"\nCalculating Next Question:")
+            print(f"  Current Index: {current_question}")
+            print(f"  Next Index: {next_question_index}")
+            print(f"  Total Questions: {len(CHAT_QUESTIONS)}")
             
             # Check if assessment is complete (no more questions to ask)
             if next_question_index >= len(CHAT_QUESTIONS):
@@ -580,7 +600,17 @@ async def send_message(session_id: str, message: ChatMessage):
             # Get the next question to ask (if any)
             next_question = CHAT_QUESTIONS[next_question_index] if next_question_index < len(CHAT_QUESTIONS) else None
             
+            if next_question:
+                print(f"\nNext Question to Ask:")
+                print(f"  Question #{next_question_index}")
+                print(f"  Text: {next_question['question'][:80]}...")
+            else:
+                print(f"\nNo more questions - Assessment complete!")
+            
             # Update session with the index of the question we're about to ask
+            print(f"\nUpdating Database:")
+            print(f"  Setting current_question = {next_question_index}")
+            
             await conn.execute(
                 """
                 UPDATE chat_sessions 
@@ -589,6 +619,14 @@ async def send_message(session_id: str, message: ChatMessage):
                 """,
                 next_question_index, json.dumps(responses), json.dumps(dimension_scores), session_id
             )
+            
+            # Verify the update
+            verify_data = await conn.fetchrow(
+                "SELECT current_question FROM chat_sessions WHERE id = $1",
+                session_id
+            )
+            print(f"  Verified DB Value: {verify_data['current_question']}")
+            print(f"{'='*60}\n")
             
             # Store bot response
             full_response = bot_response
