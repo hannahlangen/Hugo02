@@ -498,15 +498,17 @@ async def send_message(session_id: str, message: ChatMessage):
             session_id, message.message, True, datetime.utcnow()
         )
         
-        # Process current question response
+        # current_question represents the LAST question that was asked
+        # So we need to process the answer to that question
         if current_question < len(CHAT_QUESTIONS):
-            question_data = CHAT_QUESTIONS[current_question]
+            # Get the question that was just answered
+            answered_question = CHAT_QUESTIONS[current_question]
             
             # Analyze response with LLM
             scores = await analyze_response_with_llm(
-                question_data["question"], 
+                answered_question["question"], 
                 message.message, 
-                question_data["dimension"]
+                answered_question["dimension"]
             )
             
             # Update dimension scores
@@ -518,22 +520,22 @@ async def send_message(session_id: str, message: ChatMessage):
             
             # Store response
             responses.append({
-                "question_id": question_data["id"],
-                "question": question_data["question"],
+                "question_id": answered_question["id"],
+                "question": answered_question["question"],
                 "answer": message.message,
-                "dimension": question_data["dimension"],
+                "dimension": answered_question["dimension"],
                 "scores": scores,
                 "timestamp": datetime.utcnow().isoformat()
             })
             
             # Generate contextual follow-up response
-            bot_response = await generate_chat_response(question_data, message.message, session_data)
+            bot_response = await generate_chat_response(answered_question, message.message, session_data)
             
-            # Move to next question AFTER processing current one
-            current_question += 1
+            # Move to NEXT question index
+            next_question_index = current_question + 1
             
-            # Check if assessment is complete
-            if current_question >= len(CHAT_QUESTIONS):
+            # Check if assessment is complete (no more questions to ask)
+            if next_question_index >= len(CHAT_QUESTIONS):
                 # Calculate final Hugo type
                 async with httpx.AsyncClient() as client:
                     response = await client.post(
@@ -553,7 +555,7 @@ async def send_message(session_id: str, message: ChatMessage):
                                 hugo_type_result = $4, is_completed = true
                             WHERE id = $5
                             """,
-                            current_question, json.dumps(responses), json.dumps(dimension_scores),
+                            next_question_index, json.dumps(responses), json.dumps(dimension_scores),
                             hugo_type, session_id
                         )
                         
@@ -575,17 +577,17 @@ async def send_message(session_id: str, message: ChatMessage):
                             hugo_type=hugo_type
                         )
             
-            # Continue with next question
-            next_question = CHAT_QUESTIONS[current_question] if current_question < len(CHAT_QUESTIONS) else None
+            # Get the next question to ask (if any)
+            next_question = CHAT_QUESTIONS[next_question_index] if next_question_index < len(CHAT_QUESTIONS) else None
             
-            # Update session
+            # Update session with the index of the question we're about to ask
             await conn.execute(
                 """
                 UPDATE chat_sessions 
                 SET current_question = $1, responses = $2, dimension_scores = $3
                 WHERE id = $4
                 """,
-                current_question, json.dumps(responses), json.dumps(dimension_scores), session_id
+                next_question_index, json.dumps(responses), json.dumps(dimension_scores), session_id
             )
             
             # Store bot response
