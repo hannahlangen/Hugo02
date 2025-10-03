@@ -77,55 +77,79 @@ class ParticipantRegistration(BaseModel):
     participant_name: str
     participant_email: EmailStr
 
-# Chat questions for personality assessment
+# Chat questions for personality assessment (English)
 CHAT_QUESTIONS = [
     {
         "id": 1,
-        "question": "Hallo! Schön, dass du da bist. Ich bin Hugo, dein persönlicher Persönlichkeits-Assistent. Lass uns gemeinsam herausfinden, welcher Hugo-Typ du bist! 🚀\n\nZuerst eine Frage: Wenn du in einem Team arbeitest, was motiviert dich am meisten?",
+        "question": "Imagine you're starting a new project. What's most important to you? Describe how you typically approach new tasks.",
         "dimension": "general",
-        "follow_up": "Das ist interessant! Erzähl mir mehr darüber."
+        "follow_up": "That's interesting! Tell me more about that."
     },
     {
         "id": 2,
-        "question": "Stell dir vor, dein Team steht vor einer wichtigen Entscheidung. Wie gehst du normalerweise vor?",
-        "dimension": "Vision",
-        "follow_up": "Verstehe! Und wie wichtig ist es dir, dass alle im Team zustimmen?"
+        "question": "In a team, what role do you prefer to take on? Why do you feel comfortable in this role?",
+        "dimension": "general",
+        "follow_up": "I see! And how do you handle situations where your role isn't clear?"
     },
     {
         "id": 3,
-        "question": "Du bekommst ein völlig neues Projekt. Was ist dein erster Gedanke?",
-        "dimension": "Innovation",
-        "follow_up": "Spannend! Wie gehst du mit Unsicherheiten um?"
+        "question": "What gives you the greatest sense of fulfillment in your work? Tell me about a moment when you felt particularly satisfied.",
+        "dimension": "general",
+        "follow_up": "That's wonderful! What made that moment so special for you?"
     },
     {
         "id": 4,
-        "question": "Wenn du ein Problem lösen musst, worauf verlässt du dich am meisten?",
-        "dimension": "Expertise",
-        "follow_up": "Das macht Sinn. Wie wichtig ist Perfektion für dich?"
+        "question": "When facing an important decision: Do you make it quickly and decisively, or do you take time to weigh all options?",
+        "dimension": "Vision",
+        "follow_up": "Interesting approach! How do you handle it when you don't have all the information you need?"
     },
     {
         "id": 5,
-        "question": "In Meetings und Diskussionen - was ist deine natürliche Rolle?",
-        "dimension": "Connection",
-        "follow_up": "Interessant! Wie gehst du mit Konflikten um?"
+        "question": "How do you handle unexpected changes? Describe a situation where everything suddenly changed.",
+        "dimension": "Vision",
+        "follow_up": "That must have been challenging! What did you learn from that experience?"
     },
     {
         "id": 6,
-        "question": "Wenn du an deine größten beruflichen Erfolge denkst - was haben sie gemeinsam?",
-        "dimension": "general",
-        "follow_up": "Das zeigt viel über deine Stärken! Was treibt dich wirklich an?"
+        "question": "Where do your best ideas come from? Describe your creative process.",
+        "dimension": "Innovation",
+        "follow_up": "Fascinating! How do you know when an idea is worth pursuing?"
     },
     {
         "id": 7,
-        "question": "Stell dir vor, du könntest dein Traumteam zusammenstellen. Welche Art von Menschen würdest du wählen?",
-        "dimension": "Connection",
-        "follow_up": "Und wie würdest du dieses Team führen oder unterstützen?"
+        "question": "When you have a new idea: What do you do next? How do you bring ideas into reality?",
+        "dimension": "Innovation",
+        "follow_up": "Great! And how do you deal with resistance to your ideas?"
     },
     {
         "id": 8,
-        "question": "Zum Abschluss: Was ist für dich der wichtigste Aspekt bei der Arbeit?",
+        "question": "How do you learn best? Describe how you acquire new knowledge.",
+        "dimension": "Expertise",
+        "follow_up": "That makes sense! How do you stay current in your field?"
+    },
+    {
+        "id": 9,
+        "question": "How do you handle your knowledge? Do you keep it to yourself or do you like to share it with others?",
+        "dimension": "Expertise",
+        "follow_up": "Interesting! What motivates you to share (or not share) your expertise?"
+    },
+    {
+        "id": 10,
+        "question": "How do you handle conflicts in a team? Tell me about a situation where there were tensions.",
+        "dimension": "Connection",
+        "follow_up": "That sounds like a difficult situation! What was the outcome?"
+    },
+    {
+        "id": 11,
+        "question": "What is your greatest contribution to the team? How would your colleagues describe you?",
+        "dimension": "Connection",
+        "follow_up": "Thank you for sharing! That gives me great insight into your personality."
+    },
+    {
+        "id": 12,
+        "question": "Finally: If you could change one thing about how you work, what would it be and why?",
         "dimension": "general",
-        "follow_up": "Vielen Dank für deine offenen Antworten! Ich analysiere jetzt deine Persönlichkeit..."
+        "follow_up": "Thank you for your honest answers! I'm now analyzing your personality to determine your Hugo type..."
     }
 ]
 
