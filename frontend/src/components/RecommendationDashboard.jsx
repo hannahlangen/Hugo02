@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import FindMemberWizard from './FindMemberWizard';
-import TeamGapsAnalysis from './TeamGapsAnalysis';
 import './RecommendationDashboard.css';
 
 const RecommendationDashboard = () => {
-  const navigate = useNavigate();
-  const [activeView, setActiveView] = useState('dashboard');
   const [stats, setStats] = useState({
     totalRecommendations: 0,
     acceptedRecommendations: 0,
@@ -14,8 +9,10 @@ const RecommendationDashboard = () => {
     averageSynergyImprovement: 0
   });
   const [recentActivity, setRecentActivity] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('RecommendationDashboard mounted');
     fetchStats();
     fetchRecentActivity();
   }, []);
@@ -25,23 +22,27 @@ const RecommendationDashboard = () => {
       const baseUrl = window.location.port === '3000' 
         ? `http://${window.location.hostname}:8006`
         : '';
+      console.log('Fetching stats from:', `${baseUrl}/api/recommendations/stats`);
       const response = await fetch(`${baseUrl}/api/recommendations/stats`);
       if (response.ok) {
         const data = await response.json();
+        console.log('Stats received:', data);
         setStats({
-          totalRecommendations: data.total_recommendations,
-          acceptedRecommendations: data.accepted_recommendations,
-          acceptanceRate: data.acceptance_rate,
-          averageSynergyImprovement: data.average_synergy_improvement
+          totalRecommendations: data.total_recommendations || 0,
+          acceptedRecommendations: data.accepted_recommendations || 0,
+          acceptanceRate: data.acceptance_rate || 0,
+          averageSynergyImprovement: data.average_synergy_improvement || 0
         });
       }
     } catch (error) {
       console.error('Error fetching stats:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const fetchRecentActivity = async () => {
-    // Mock data for now
+  const fetchRecentActivity = () => {
+    console.log('Setting recent activity');
     setRecentActivity([
       {
         id: 1,
@@ -68,7 +69,20 @@ const RecommendationDashboard = () => {
     ]);
   };
 
-  const renderDashboard = () => (
+  console.log('Rendering RecommendationDashboard', { loading, stats, activityCount: recentActivity.length });
+
+  if (loading) {
+    return (
+      <div className="recommendation-dashboard">
+        <div className="dashboard-header">
+          <h1>🎯 Team Recommendations</h1>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
     <div className="recommendation-dashboard">
       <div className="dashboard-header">
         <h1>🎯 Team Recommendations</h1>
@@ -77,25 +91,25 @@ const RecommendationDashboard = () => {
 
       {/* Action Cards */}
       <div className="action-cards">
-        <div className="action-card" onClick={() => setActiveView('find-member')}>
+        <div className="action-card">
           <div className="card-icon">🔍</div>
           <h3>Find Member</h3>
           <p>Find the perfect addition to your team</p>
-          <button className="card-button">Get Started →</button>
+          <button className="card-button">Coming Soon</button>
         </div>
 
-        <div className="action-card" onClick={() => setActiveView('build-team')}>
+        <div className="action-card">
           <div className="card-icon">👥</div>
           <h3>Build Team</h3>
           <p>Create optimal team composition</p>
           <button className="card-button">Coming Soon</button>
         </div>
 
-        <div className="action-card" onClick={() => setActiveView('analyze-gaps')}>
+        <div className="action-card">
           <div className="card-icon">📊</div>
           <h3>Analyze Gaps</h3>
           <p>Identify improvement opportunities</p>
-          <button className="card-button">Analyze →</button>
+          <button className="card-button">Coming Soon</button>
         </div>
       </div>
 
@@ -126,39 +140,32 @@ const RecommendationDashboard = () => {
       <div className="recent-activity">
         <h2>Recent Activity</h2>
         <div className="activity-list">
-          {recentActivity.map(activity => (
-            <div key={activity.id} className={`activity-item status-${activity.status}`}>
-              <div className="activity-icon">
-                {activity.type === 'member_added' && '✅'}
-                {activity.type === 'team_analysis' && '⏳'}
-                {activity.type === 'gap_analysis' && '📈'}
-              </div>
-              <div className="activity-content">
-                <div className="activity-description">{activity.description}</div>
-                <div className="activity-timestamp">
-                  {new Date(activity.timestamp).toLocaleString()}
-                </div>
-              </div>
-              {activity.synergy && (
-                <div className="activity-synergy">{activity.synergy}% Synergy</div>
-              )}
+          {recentActivity.length === 0 ? (
+            <div style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>
+              No recent activity
             </div>
-          ))}
+          ) : (
+            recentActivity.map(activity => (
+              <div key={activity.id} className={`activity-item status-${activity.status}`}>
+                <div className="activity-icon">
+                  {activity.type === 'member_added' && '✅'}
+                  {activity.type === 'team_analysis' && '⏳'}
+                  {activity.type === 'gap_analysis' && '📈'}
+                </div>
+                <div className="activity-content">
+                  <div className="activity-description">{activity.description}</div>
+                  <div className="activity-timestamp">
+                    {new Date(activity.timestamp).toLocaleString()}
+                  </div>
+                </div>
+                {activity.synergy && (
+                  <div className="activity-synergy">{activity.synergy}% Synergy</div>
+                )}
+              </div>
+            ))
+          )}
         </div>
       </div>
-
-    </div>
-  );
-
-  return (
-    <div>
-      {activeView === 'dashboard' && renderDashboard()}
-      {activeView === 'find-member' && (
-        <FindMemberWizard onBack={() => setActiveView('dashboard')} />
-      )}
-      {activeView === 'analyze-gaps' && (
-        <TeamGapsAnalysis onBack={() => setActiveView('dashboard')} />
-      )}
     </div>
   );
 };
